@@ -28,7 +28,6 @@ module.exports = function (grunt) {
         },
 
         ownJsFiles: [
-            'js/marked.min.js',
             'js/init.js',
             'ts_compiled/mdwiki_ts.js',
             'tmp/MDwiki.templates.js',
@@ -66,6 +65,7 @@ module.exports = function (grunt) {
             'tmp/main.min.css',
         ],
         jsFiles: [
+            'node_modules/marked/marked.min.js',
             'node_modules/jquery/dist/jquery.min.js',
             'node_modules/handlebars/dist/handlebars.runtime.min.js',
             'node_modules/jquery-colorbox/jquery.colorbox-min.js',
@@ -78,6 +78,7 @@ module.exports = function (grunt) {
             'tmp/main.css'
         ],
         unminifiedJsFiles: [
+            'node_modules/marked/lib/marked.js',
             'node_modules/jquery/dist/jquery.js',
             'node_modules/handlebars/dist/handlebars.runtime.js',
             'node_modules/jquery-colorbox/jquery.colorbox.js',
