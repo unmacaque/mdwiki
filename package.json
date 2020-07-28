@@ -32,6 +32,7 @@
     "typings": "^2.1.1"
   },
   "scripts": {
+    "build": "grunt release",
     "postinstall": "typings install",
     "start": "grunt devel"
   }
