@@ -45,9 +45,9 @@ module MDwiki.Utils {
     }
 
     export class Util {
-        static wait(miliseconds:Number) {
+        static wait(milliseconds: number) {
             return $.Deferred(function (dfd) {
-                setTimeout(dfd.resolve, miliseconds);
+                setTimeout(dfd.resolve, milliseconds);
             });
         }
 

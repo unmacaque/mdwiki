@@ -1,4 +1,5 @@
 interface JQueryStatic {
+    initMDwiki: (name: string, registerDomReady?: boolean) => void;
     md: any;
     toptext: () => string;
     affix: (any) => any;

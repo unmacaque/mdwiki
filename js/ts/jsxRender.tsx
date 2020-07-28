@@ -1,8 +1,5 @@
 // Tiny JSX renderer in TypeScript inspired by plain-jxs: https://github.com/callumlocke/plain-jsx
 
-//  Babel allows you to specify the factory function as inline comment:
-/** @jsx JSXrender */
-
 class JsxRender {
 
     public createElement = (tagName: string, attributes?: { [key: string]: any }, ...children: Array<HTMLElement |  string>): HTMLElement => {
