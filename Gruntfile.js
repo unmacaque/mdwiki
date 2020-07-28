@@ -66,24 +66,24 @@ module.exports = function (grunt) {
             'tmp/main.min.css',
         ],
         jsFiles: [
-            'bower_components/jquery/jquery.min.js',
+            'node_modules/jquery/dist/jquery.min.js',
             'node_modules/handlebars/dist/handlebars.runtime.min.js',
-            'extlib/js/jquery.colorbox.min.js',
-            'extlib/js/prism.js',
-            'bower_components/bootstrap/js/affix.js',
-            'bower_components/bootstrap/js/dropdown.js',
+            'node_modules/jquery-colorbox/jquery.colorbox-min.js',
+            'node_modules/prismjs/prism.js',
+            'node_modules/bootstrap/js/affix.js',
+            'node_modules/bootstrap/js/dropdown.js',
         ],
         // for debug builds use unminified versions:
         unminifiedCssFiles: [
             'tmp/main.css'
         ],
         unminifiedJsFiles: [
-            'bower_components/jquery/jquery.js',
-            'bower_components/bootstrap/js/affix.js',
-            'bower_components/bootstrap/js/dropdown.js',
+            'node_modules/jquery/dist/jquery.js',
             'node_modules/handlebars/dist/handlebars.runtime.js',
-            'extlib/js/prism.js',
-            'extlib/js/jquery.colorbox.js',
+            'node_modules/jquery-colorbox/jquery.colorbox.js',
+            'node_modules/prismjs/prism.js',
+            'node_modules/bootstrap/js/affix.js',
+            'node_modules/bootstrap/js/dropdown.js',
         ],
 
         ts: {
@@ -173,7 +173,7 @@ module.exports = function (grunt) {
                 {
                     expand: true,
                     flatten: true,
-                    src: 'bower_components/jquery/jquery.min.js',
+                    src: 'node_modules/jquery/dist/jquery.min.js',
                     dest: 'unittests/lib/'
                 }]
             }
