@@ -1,42 +1,25 @@
-[![Build Status](https://travis-ci.org/Dynalon/mdwiki.png?branch=master)](https://travis-ci.org/Dynalon/mdwiki)
-
-MDwiki
-======
+# MDwiki
 
 100% static single file CMS/Wiki done purely with client-side Javascript and HTML5.
 
 See http://www.mdwiki.info for more info and documentation.
-------
 
-## !! This project is currently unmaintained!!
+----
 
-Download
---------
+**Note: This is a fork of <https://github.com/Dynalon/mdwiki>. Maintenance is done on a best effort basis.**
 
-See <https://github.com/Dynalon/mdwiki/releases> for readily precompiled releases.
+The fork sports the following changes:
 
-How to build from source
-------------------------
-(applies to master branch, stable may differ)
+- all dependencies were updated to the latest version
+- [marked](https://www.npmjs.com/package/marked) was updated to support more GFM syntax
+- bower was removed in favor of npm
 
-1. Install node.js >= 0.10 and npm (if not included)
-2. Clone the mdwiki repo
-3. Install deps and build MDwiki (you need automake installed - if you are on Windows check the contents of the Makefile for the list of commands to run them manually):
+----
 
-```
-    make
-```
+## Development
 
-4. Find the `mdwiki.html` in the `dist/` folder
+Run `npm install` once to install all required dependencies.
 
-5. Development
+Run `npm start` to start a development web server on port 8080. Changes to the source are watched and trigger a rebuild.
 
-For development, use
-
-    grunt devel 
-
-To get unminified source code compiled to `dist/mdwiki-debug.html`, as well as auto file watching and livereload support. Symlink the development mdwiki file into your webroot for testing.
-
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/Dynalon/mdwiki/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-
+Run `npm run build` to produce a minified version of mdwiki in the `dist/` directory.
