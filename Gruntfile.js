@@ -210,11 +210,10 @@ module.exports = function (grunt) {
                 'templates/**/*.html',
                 'index.tmpl'
             ],
-            tasks: ['debug', 'reload']
-        },
-        reload: {
-            port: 35729,
-            liveReload: {}
+            options: {
+                livereload: true
+            },
+            tasks: 'debug'
         },
         'http-server': {
             'dev': {
@@ -225,7 +224,7 @@ module.exports = function (grunt) {
                 showDir: true,
                 autoIndex: true,
                 defaultExt: "html",
-                runInBackground: false
+                runInBackground: true
             }
         }
     });
@@ -255,7 +254,7 @@ module.exports = function (grunt) {
     /*** NAMED TASKS ***/
     grunt.registerTask('release', ['ts', 'less:min', 'shell:compile_templates', 'concat:dev', 'uglify:dist', 'index']);
     grunt.registerTask('debug', ['ts', 'less:dev', 'shell:compile_templates', 'concat:dev', 'index_debug']);
-    grunt.registerTask('devel', ['debug', 'server', 'unittests', 'reload', 'watch']);
+    grunt.registerTask('devel', ['debug', 'server', 'unittests', 'watch']);
     grunt.registerTask('unittests', ['copy:unittests']);
 
     grunt.registerTask('server', ['http-server:dev']);

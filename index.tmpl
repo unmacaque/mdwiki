@@ -27,6 +27,9 @@
     function print_script_ref(ref) {
         print('<script type="text/javascript" src="//' + ref + '"></script>\n');
     }
+    if (task === 'debug') {
+        print('<script type="text/javascript" src="//localhost:35729/livereload.js"></script>\n');
+    }
     function print_style_ref(ref) {
         print('<link rel="stylesheet" href="//' + ref + '" type="text/css"></link>\n');
     }
