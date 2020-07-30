@@ -19,7 +19,7 @@ module MDwiki.Gimmick {
         (trigger: string, content: string, options: any, domElement: any): void;
     }
     export interface ILinkGimmickHandler {
-        (trigger: string, text: string, options: any, domElement:any)
+        (trigger: string, text: string, options: any, domElement: any)
     }
 
     export class GimmickHandler {
@@ -29,7 +29,7 @@ module MDwiki.Gimmick {
         trigger: string;
 
         // reference to the gimmick the handler belongs,
-        public get gimmick (): Gimmick {
+        public get gimmick(): Gimmick {
             return this.gimmickReference;
         }
         gimmickReference: Gimmick;
@@ -42,7 +42,7 @@ module MDwiki.Gimmick {
         }
     }
     export class ScriptResource {
-        constructor (
+        constructor(
             public url: string,
             public loadstage: string = 'pregimmick',
             public finishstage: string = 'gimmick'
@@ -58,7 +58,7 @@ module MDwiki.Gimmick {
         private initFunctions = $.Callbacks();
 
         // should be called by the implementor to register init functions
-        initFunction (initFn: Function) {
+        initFunction(initFn: Function) {
             this.initFunctions.add(initFn);
         }
 
@@ -92,7 +92,7 @@ module MDwiki.Gimmick {
             });
             return match;
         }
-        registerScriptResource (res: ScriptResource) {
+        registerScriptResource(res: ScriptResource) {
             var loadDone = $.Deferred();
 
             // load the script
@@ -126,7 +126,7 @@ module MDwiki.Gimmick {
         private domElement: JQuery;
         private stages: StageChain;
 
-        constructor (stageChain, domElement?) {
+        constructor(stageChain, domElement?) {
             this.domElement = domElement || $(document);
             this.stages = stageChain;
         }

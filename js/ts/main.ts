@@ -1,14 +1,14 @@
 declare var MDwikiEnableDebug: any;
 
-(function($) {
+(function ($) {
 
     var logger;
-    if (typeof(MDwikiEnableDebug) != "undefined")
+    if (typeof (MDwikiEnableDebug) != "undefined")
         logger = new MDwiki.Util.Logger(MDwiki.Util.LogLevel.DEBUG);
     else
         logger = new MDwiki.Util.Logger(MDwiki.Util.LogLevel.ERROR);
 
-    $.md.getLogger = function() {
+    $.md.getLogger = function () {
         return logger;
     };
 
@@ -17,21 +17,21 @@ declare var MDwikiEnableDebug: any;
         // this is the main object graph composition root
         var stageChain = new StageChain();
         var gimmickLoader = new GimmickLoader(stageChain);
-        var wiki  = new MDwiki.Core.Wiki(gimmickLoader, stageChain);
+        var wiki = new MDwiki.Core.Wiki(gimmickLoader, stageChain);
 
         $.md.wiki = wiki;
 
         if (!registerDomReady) {
             $.md.wiki.gimmicks = {};
-            $.md.wiki.gimmicks.registerModule = function() {};
-            $.md.wiki.gimmicks.registerGimmick = function() {};
+            $.md.wiki.gimmicks.registerModule = function () { };
+            $.md.wiki.gimmicks.registerGimmick = function () { };
             return;
         }
 
         $(document).ready(function () {
 
             function extractHashData() {
-            // first char is the # or #!
+                // first char is the # or #!
                 var href;
                 if (window.location.hash.startsWith('#!')) {
                     href = window.location.hash.substring(2);
@@ -39,7 +39,7 @@ declare var MDwikiEnableDebug: any;
                     href = window.location.hash.substring(1);
                 }
 
-                // Validation of the href 
+                // Validation of the href
                 var parser = document.createElement('a');
                 parser.href = href;
                 if (window.location.hostname != parser.hostname) {
@@ -59,18 +59,17 @@ declare var MDwikiEnableDebug: any;
                 }
             }
 
-            function appendDefaultFilenameToHash () {
+            function appendDefaultFilenameToHash() {
                 var newHashString = '';
-                var currentHashString = window.location.hash || '';
+                var currentHashString = window.location.hash || '';
                 if (currentHashString === '' ||
-                    currentHashString === '#'||
-                    currentHashString === '#!')
-                {
+                    currentHashString === '#' ||
+                    currentHashString === '#!') {
                     newHashString = '#!index.md';
                 }
-                else if (currentHashString.startsWith ('#!') &&
-                         currentHashString.endsWith('/')
-                        ) {
+                else if (currentHashString.startsWith('#!') &&
+                    currentHashString.endsWith('/')
+                ) {
                     newHashString = currentHashString + 'index.md';
                 }
                 if (newHashString)

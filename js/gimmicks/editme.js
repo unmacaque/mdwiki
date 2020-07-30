@@ -1,11 +1,11 @@
-(function($){
+(function ($) {
     'use strict';
 
     function editMe($links, opt, href) {
         opt.text = opt.text || 'Edit Me';
         if (!href.endsWith('/'))
             href += '/';
-        return $links.each(function(i,link) {
+        return $links.each(function (i, link) {
             $(link)
                 .text(opt.text)
                 .attr('href', href + $.md.mainHref)

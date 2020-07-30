@@ -55,11 +55,11 @@ module MDwiki.Gimmick {
             if (matches[2] && matches[2].toLowerCase().indexOf("gimmick") != 0) {
                 // remove whitespaces
                 var params = $.trim(matches[2].toString());
-                if (params.charAt (params.length - 1) === ')') {
+                if (params.charAt(params.length - 1) === ')') {
                     params = params.substring(0, params.length - 1);
                 }
                 // remove the closing } if present
-                if (params.charAt (params.length - 1) === '}') {
+                if (params.charAt(params.length - 1) === '}') {
                     params = params.substring(0, params.length - 1);
                 }
 
@@ -67,8 +67,8 @@ module MDwiki.Gimmick {
                 params = '({' + params + '})';
 
                 // replace any single quotes by double quotes
-                var replace_quotes = new RegExp ("'", 'g');
-                params = params.replace (replace_quotes, '"');
+                var replace_quotes = new RegExp("'", 'g');
+                params = params.replace(replace_quotes, '"');
                 // finally, try if the json object is valid
                 try {
                     /*jshint -W061 */
@@ -82,7 +82,7 @@ module MDwiki.Gimmick {
 
         private getLinkGimmicks(): LinkGimmickReference[] {
             var linkGimmicks = [];
-            var $domLinks =  this.domElement.find("a:icontains(gimmick:)");
+            var $domLinks = this.domElement.find("a:icontains(gimmick:)");
             $.each($domLinks, (i, link) => {
                 var $link = $(link);
                 var text = $link.text();
@@ -102,7 +102,7 @@ module MDwiki.Gimmick {
         private getSinglelineGimmicks(): SinglelineGimmickReference[] {
             var $verbatim = this.domElement.find("code:not(pre > code)");
             var singlelineGimmicks = [];
-            $.each($verbatim, (i,e) => {
+            $.each($verbatim, (i, e) => {
                 // TODO max split 1 time, watch for " " if no options are present
                 var slg = new SinglelineGimmickReference();
                 slg.domElement = $(e);

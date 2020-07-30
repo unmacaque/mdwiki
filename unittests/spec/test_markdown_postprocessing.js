@@ -1,7 +1,7 @@
-describe('MarkdownPostProcessor', function() {
+describe('MarkdownPostProcessor', function () {
     'use strict';
     var postprocessor;
-    beforeEach(function() {
+    beforeEach(function () {
         loadFixtures('rendered-markdown/markdown-postprocessing.html');
         postprocessor = new MDwiki.Markdown.MarkdownPostprocessing();
     });
@@ -9,7 +9,7 @@ describe('MarkdownPostProcessor', function() {
     //marked.setOptions({breaks: true, gfm: true});
     //var rendered = marked(md);
 
-    it('should correctly postprocess a multiline gimmick', function() {
+    it('should correctly postprocess a multiline gimmick', function () {
         var input = $('#postprocessing-multiline-gimmick');
         postprocessor.process(input);
 

@@ -1,9 +1,9 @@
-(function($) {
+(function ($) {
     //'use strict';
     function youtubeLinkToIframe() {
         var $youtube_links = $('a[href*=youtube\\.com]:empty, a[href*=youtu\\.be]:empty');
 
-        $youtube_links.each(function() {
+        $youtube_links.each(function () {
             var $this = $(this);
             var href = $this.attr('href');
             if (href !== undefined) {
@@ -25,7 +25,7 @@
     }
     var youtubeGimmick = new MDwiki.Core.Module();
     youtubeGimmick.init = function () {
-        $.md.stage('gimmick').subscribe(function(done) {
+        $.md.stage('gimmick').subscribe(function (done) {
             youtubeLinkToIframe();
             done();
         });

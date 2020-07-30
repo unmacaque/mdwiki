@@ -2,7 +2,7 @@
 
 class JsxRender {
 
-    public createElement = (tagName: string, attributes?: { [key: string]: any }, ...children: Array<HTMLElement |  string>): HTMLElement => {
+    public createElement = (tagName: string, attributes?: { [key: string]: any }, ...children: Array<HTMLElement | string>): HTMLElement => {
 
         if (!tagName || typeof tagName !== 'string')
             throw new Error("tagName has to be defined, non-empty string");
@@ -23,11 +23,11 @@ class JsxRender {
         return element;
     }
 
-    public __spread () {
+    public __spread() {
         throw "__spread not yet implemented!";
     }
 
-    private appendChild = (element: HTMLElement, child: string | HTMLElement | Array<string | HTMLElement>) => {
+    private appendChild = (element: HTMLElement, child: string | HTMLElement | Array<string | HTMLElement>) => {
         if (child instanceof HTMLElement)
             element.appendChild(child);
         else if (typeof child === 'string')
@@ -48,7 +48,7 @@ let arr = [1, 2, 3];
 let rendered =
     <div>
         <h1>{heading}</h1>
-        {['foo', 'bar'].map(i => <h1>{i}</h1>) }
+        {['foo', 'bar'].map(i => <h1>{i}</h1>)}
     </div>
 
 // setTimeout(() => {

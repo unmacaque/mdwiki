@@ -1,7 +1,7 @@
-describe('Stages', function() {
+describe('Stages', function () {
     'use strict';
 
-    describe('StageChain', function() {
+    describe('StageChain', function () {
 
         var two_test_stages = ['first', 'second'];
 
@@ -21,13 +21,13 @@ describe('Stages', function() {
             expect(count).toBe(2);
             jasmineDone();
         });
-        it('should not allow a stage to a previous stage', function(jasmineDone) {
+        it('should not allow a stage to a previous stage', function (jasmineDone) {
             var stage_chain = new MDwiki.Stages.StageChain(two_test_stages);
             var exception_thrown = false;
 
-            stage_chain.getStage('second').subscribe(function(done) {
+            stage_chain.getStage('second').subscribe(function (done) {
                 try {
-                    stage_chain.getStage('first').subscribe(function(done) {
+                    stage_chain.getStage('first').subscribe(function (done) {
                         done();
                     });
                 } catch (ex) {
@@ -42,13 +42,13 @@ describe('Stages', function() {
         });
     });
 
-    describe('Stage', function() {
-        it('should allow to subscribe to self', function() {
+    describe('Stage', function () {
+        it('should allow to subscribe to self', function () {
             var stage = new MDwiki.Stages.Stage('sample');
             var count = 0;
-            stage.subscribe(function(done1) {
+            stage.subscribe(function (done1) {
                 count++;
-                stage.subscribe(function(done2) {
+                stage.subscribe(function (done2) {
                     count++;
                     done2();
                 });
@@ -57,13 +57,13 @@ describe('Stages', function() {
             stage.start();
             expect(count).toBe(2);
         });
-        it('shoud not allow subscription after it is finished', function() {
+        it('shoud not allow subscription after it is finished', function () {
             var stage = new MDwiki.Stages.Stage('sample');
             var executed = false;
             var ok = false;
             stage.start();
             try {
-                stage.subscribe(function(done) {
+                stage.subscribe(function (done) {
                     executed = true;
                 });
             } catch (ex) {
@@ -72,9 +72,9 @@ describe('Stages', function() {
             expect(ok).toBeTruthy();
             expect(executed).toBeFalsy();
         });
-        it('should execute several async methods in parallel', function() {
+        it('should execute several async methods in parallel', function () {
             var stage = new MDwiki.Stages.Stage('sample');
-            stage.subscribe(function(done) {
+            stage.subscribe(function (done) {
                 done();
             });
         });

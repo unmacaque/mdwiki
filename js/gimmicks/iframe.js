@@ -1,8 +1,8 @@
-(function($) {
+(function ($) {
     'use strict';
 
     function create_iframe($links, opt, text) {
-        return $links.each (function (i, link){
+        return $links.each(function (i, link) {
             var $link = $(link);
             var href = $link.attr('href');
             var $iframe = $('<iframe class="col-md-12" style="border: 0px solid red; height: 650px;"></iframe>');
@@ -21,7 +21,7 @@
                     $iframe.height(newHeight);
                 };
 
-                $iframe.load(function(done) {
+                $iframe.load(function (done) {
                     updateSizeFn();
                 });
 

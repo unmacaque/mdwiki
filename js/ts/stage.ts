@@ -6,14 +6,14 @@ module MDwiki.Core {
         (): void;
     }
     export interface SubscribedFunc {
-        (cb:DoneCallback): void;
+        (cb: DoneCallback): void;
     }
 
     export class Resource {
-        constructor(public url:string, public dataType:string = 'text') {
+        constructor(public url: string, public dataType: string = 'text') {
         }
 
-        static fetch(url:string, dataType:string = 'text') {
+        static fetch(url: string, dataType: string = 'text') {
             var jqxhr = $.ajax({
                 url: url,
                 dataType: dataType
@@ -26,11 +26,10 @@ module MDwiki.Core {
 import SubscribedFunc = MDwiki.Core.SubscribedFunc;
 module MDwiki.Stages {
 
-    export class StageChain
-    {
-        private defaultStageNames = ['init','load','transform','post_transform', 'ready','skel_ready',
-        'bootstrap', 'pregimmick', 'gimmick', 'postgimmick', 'all_ready',
-        'final_tests'
+    export class StageChain {
+        private defaultStageNames = ['init', 'load', 'transform', 'post_transform', 'ready', 'skel_ready',
+            'bootstrap', 'pregimmick', 'gimmick', 'postgimmick', 'all_ready',
+            'final_tests'
         ];
 
         private stages: Stage[] = [];
@@ -39,30 +38,30 @@ module MDwiki.Stages {
             if (!stageNames)
                 stageNames = this.defaultStageNames;
 
-            stageNames.map(n => this.append (new Stage(n)));
+            stageNames.map(n => this.append(new Stage(n)));
         }
         reset() {
-            var new_stages: Stage[] = [];
+            var new_stages: Stage[] = [];
             for (var i = 0; i < this.stages.length; i++) {
                 var name = this.stages[i].name;
                 new_stages.push(new Stage(name));
             }
         }
-        appendArray (st: Stage[]) {
+        appendArray(st: Stage[]) {
             st.map(s => this.append(s));
         }
-        append (s: Stage) {
+        append(s: Stage) {
             var len = this.stages.length;
             if (len == 0) {
                 this.stages.push(s);
                 return;
             }
-            var last = this.stages[len-1];
+            var last = this.stages[len - 1];
             // each stage triggers the next one when finished
             last.finished().done(() => s.start());
             this.stages.push(s);
         }
-        run () {
+        run() {
             this.stages[0].start();
         }
         // compat funcs
@@ -71,8 +70,7 @@ module MDwiki.Stages {
         }
     }
 
-    export class Stage
-    {
+    export class Stage {
         private allFinishedDfd: JQueryDeferred<void> = $.Deferred<void>();
         private get isFinished() {
             return this.allFinishedDfd.state() !== 'pending';
@@ -97,7 +95,7 @@ module MDwiki.Stages {
             this.name = name;
         }
 
-        private countdown (): void {
+        private countdown(): void {
             this.numOutstanding--;
             if (this.numOutstanding == 0) {
                 this.allFinishedDfd.resolve();
@@ -117,7 +115,7 @@ module MDwiki.Stages {
          * prior to executing the done callback).
          * @param fn - The function to be called.
          */
-        subscribe (fn: SubscribedFunc) : void {
+        subscribe(fn: SubscribedFunc): void {
             if (this.isFinished)
                 throw 'Stage already finished, cannot subscribe';
 
@@ -132,7 +130,7 @@ module MDwiki.Stages {
          * @description starts the stage, running all subscribed callbacks.
          */
         start() {
-            console.dir ("running stage " + this.name);
+            console.dir("running stage " + this.name);
             this.started = true;
 
             if (this.numOutstanding == 0) {

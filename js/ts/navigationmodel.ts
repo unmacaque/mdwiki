@@ -5,7 +5,7 @@ module MDwiki.DataModels {
         private navbar;
         private node: any;
 
-        constructor (node: any) {
+        constructor(node: any) {
             this.node = $(node);
             this.navbar = new NavigationBarModel();
         }
@@ -17,11 +17,11 @@ module MDwiki.DataModels {
             return this.navbar;
         }
 
-        private findPageTitle () {
+        private findPageTitle() {
             this.navbar.pageTitle = this.node.filter("h1").first().text() || "";
         }
 
-        private findTopLevelEntries () {
+        private findTopLevelEntries() {
             // TODO fancy selector that selects only p's that aren't
             // followed by <ul>
             this.node.filter("p").find("a").each((i, e) => {
@@ -38,7 +38,7 @@ module MDwiki.DataModels {
             });
         }
 
-        private findSublevelEntries (ul: JQuery): SublevelEntry[] {
+        private findSublevelEntries(ul: JQuery): SublevelEntry[] {
             let found_sublevel_entries = [];
             $(ul).find("li").each((i, e) => {
                 // TODO is this always only one child?
@@ -49,7 +49,7 @@ module MDwiki.DataModels {
             return found_sublevel_entries;
         }
 
-        private getSublevelEntry (el: Element): SublevelEntry {
+        private getSublevelEntry(el: Element): SublevelEntry {
             let $el = $(el);
             let entry = new SublevelEntry();
             if ($el.is("h1")) {
@@ -67,15 +67,13 @@ module MDwiki.DataModels {
         pageTitle: string = "";
     }
 
-    export class ToplevelEntry
-    {
+    export class ToplevelEntry {
         title: string = "";
         href: string = "";
         childs: SublevelEntry[] = [];
     }
 
-    export class SublevelEntry
-    {
+    export class SublevelEntry {
         title: string = "";
         href: string = "";
         seperator: boolean = false;

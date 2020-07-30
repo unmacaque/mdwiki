@@ -1,4 +1,4 @@
-(function($) {
+(function ($) {
 
     var prismGimmick = new MDwiki.Gimmick.Gimmick('prism');
     var prismHandler = new MDwiki.Gimmick.GimmickHandler('multiline');
@@ -23,7 +23,7 @@
         'xml'
     ];
 
-    prismHandler.callback = function(params, done) {
+    prismHandler.callback = function (params, done) {
         var domElement = params.domElement;
         var trigger = params.trigger;
         var text = params.text;
@@ -32,10 +32,10 @@
         done();
     };
 
-    function prism_highlight () {
+    function prism_highlight() {
         // marked adds lang-ruby, lang-csharp etc to the <code> block like in GFM
         var $codeblocks = $('pre code[class^=lang-]');
-        $codeblocks.each(function() {
+        $codeblocks.each(function () {
             var $this = $(this);
             var classes = $this.attr('class');
             var lang = classes.substring(5);
@@ -53,7 +53,7 @@
 
     prismGimmick.addHandler(prismHandler);
     $.md.wiki.gimmicks.registerGimmick(prismGimmick);
-    $.md.wiki.stages.getStage('gimmick').subscribe(function(done) {
+    $.md.wiki.stages.getStage('gimmick').subscribe(function (done) {
         Prism.highlightAll();
         done();
     });

@@ -6,13 +6,13 @@ interface JQuery {
 module MDwiki.Markdown {
 
     export class MarkdownPostprocessing {
-        public process (dom: JQuery): void {
-            dom.find("pre > code").each((i,code) => {
+        public process(dom: JQuery): void {
+            dom.find("pre > code").each((i, code) => {
                 this.removeLangPrefix($(code));
             });
         }
 
-        private removeLangPrefix (code: JQuery): void {
+        private removeLangPrefix(code: JQuery): void {
             var klass = code.attr('class');
             if (klass && klass.indexOf("lang-gimmick") === 0) {
                 klass = klass.replace('lang-gimmick', 'gimmick');
@@ -53,7 +53,7 @@ module MDwiki.Markdown {
         render() {
             var h = $(`<div>${this.uglyHtml}</div>`);
             // TODO .html() is evil!!!
-            h.find('p').each(function(i,e) {
+            h.find('p').each(function (i, e) {
                 var el = $(e);
                 el.replaceWith(el.html());
             });

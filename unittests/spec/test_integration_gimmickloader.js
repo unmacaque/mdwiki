@@ -2,7 +2,7 @@ describe('GimmickLoader/GimmickParser integration', function () {
     'use strict';
     var gmck;
     var loader;
-    beforeEach(function() {
+    beforeEach(function () {
         gmck = new MDwiki.Gimmick.Gimmick('somegimmick');
         loadFixtures('gimmick.html');
     });

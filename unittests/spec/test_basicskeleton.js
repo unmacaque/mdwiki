@@ -1,15 +1,15 @@
-describe('BasicSkeleton', function() {
+describe('BasicSkeleton', function () {
     'use strict';
 
     var skeleton;
     var config = {
     };
 
-    beforeEach(function() {
+    beforeEach(function () {
         loadFixtures('rendered-markdown/paragraph.html');
     });
 
-    it('should correctly transform a simple paragraph', function() {
+    it('should correctly transform a simple paragraph', function () {
         var section = $('#single-paragraph')[0];
         skeleton = new MDwiki.Legacy.PageSkeleton(config, section);
         skeleton.createBasicSkeleton();
@@ -17,7 +17,7 @@ describe('BasicSkeleton', function() {
         expect(text).toBe('This is a sentence.');
     });
 
-    it('should have moved left floated images into the left float environment', function() {
+    it('should have moved left floated images into the left float environment', function () {
         var section = $('#single-paragraph-with-left-float-image')[0];
         skeleton = new MDwiki.Legacy.PageSkeleton(config, section);
         skeleton.createBasicSkeleton();
@@ -28,7 +28,7 @@ describe('BasicSkeleton', function() {
         expect(image_in_floatenv).toBeTruthy();
     });
 
-    it('should have moved right floated images into the right float environment', function() {
+    it('should have moved right floated images into the right float environment', function () {
         var section = $('#single-paragraph-with-right-float-image')[0];
         skeleton = new MDwiki.Legacy.PageSkeleton(config, section);
         skeleton.createBasicSkeleton();
@@ -39,7 +39,7 @@ describe('BasicSkeleton', function() {
         expect(image_in_floatenv).toBeTruthy();
     });
 
-    it('should not have removed any regular links from the paragraph', function() {
+    it('should not have removed any regular links from the paragraph', function () {
         var section = $('#single-paragraph-with-image-and-link')[0];
         skeleton = new MDwiki.Legacy.PageSkeleton(config, section);
         skeleton.createBasicSkeleton();

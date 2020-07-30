@@ -1,10 +1,10 @@
-(function($) {
+(function ($) {
     'use strict';
 
     var themeChooserGimmick = {
         name: 'Themes',
         version: $.md.version,
-        once: function() {
+        once: function () {
             $.md.linkGimmick(this, 'carousel', carousel);
         }
     };
@@ -18,7 +18,7 @@
 
         var imageUrls = [];
         var i = 0;
-        $.each(href.split(','), function(i, e) {
+        $.each(href.split(','), function (i, e) {
             imageUrls.push($.trim(e));
             $c.find('ol').append('<li data-target="#myCarousel" data-slide-to="' + i + '" class="active" /');
             var div;

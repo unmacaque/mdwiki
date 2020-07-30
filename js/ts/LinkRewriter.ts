@@ -2,9 +2,9 @@
 module MDwiki.Links {
     export class LinkRewriter {
 
-        private domElement:JQuery;
+        private domElement: JQuery;
 
-        constructor(domElement:any) {
+        constructor(domElement: any) {
             this.domElement = $(domElement);
         }
 

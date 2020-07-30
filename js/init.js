@@ -1,4 +1,4 @@
-(function($) {
+(function ($) {
     'use strict';
 
     // hide the whole page so we dont see the DOM flickering

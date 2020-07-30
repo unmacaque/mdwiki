@@ -8,25 +8,25 @@ var url = local_url;
 module.exports = {
     'It has a title': function (test) {
         test
-        .open(url)
-        .waitForElement('#start-tests')
-        .assert.title().is('MDwiki - Markdown based wiki done 100% on the client via javascript', 'It has title')
-        .done();
+            .open(url)
+            .waitForElement('#start-tests')
+            .assert.title().is('MDwiki - Markdown based wiki done 100% on the client via javascript', 'It has title')
+            .done();
 
     },
     'It has a bootstrap navigation menu at the top': function (test) {
         test
-        .open(url)
-        .waitForElement('#start-tests')
-        .assert.exists('ul.nav')
-        .done();
+            .open(url)
+            .waitForElement('#start-tests')
+            .assert.exists('ul.nav')
+            .done();
     },
     'It has the page brand set correctly': function (test) {
         test
-        .open(url)
-        .waitForElement('#start-tests')
-        .assert.exists('a.navbar-brand')
-        .assert.text('a.navbar-brand', 'MDwiki')
-        .done();
+            .open(url)
+            .waitForElement('#start-tests')
+            .assert.exists('a.navbar-brand')
+            .assert.text('a.navbar-brand', 'MDwiki')
+            .done();
     }
 };

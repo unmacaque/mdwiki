@@ -1,7 +1,7 @@
 module MDwiki.Utils {
 
     export class Url {
-        static isRelativeUrl(url:string) {
+        static isRelativeUrl(url: string) {
             if (!url)
                 return false;
 
@@ -97,7 +97,7 @@ module MDwiki.Utils {
         static countDownLatch(capacity, min) {
             min = min || 0;
             capacity = (capacity === undefined) ? 1 : capacity;
-            var dfd:any = $.Deferred();
+            var dfd: any = $.Deferred();
             if (capacity <= min) dfd.resolve();
             dfd.capacity = capacity;
             dfd.countDown = function () {
@@ -124,27 +124,25 @@ module MDwiki.Utils {
 }
 
 if (typeof String.prototype.startsWith !== 'function') {
-    String.prototype.startsWith = function(str) {
+    String.prototype.startsWith = function (str) {
         return this.slice(0, str.length) === str;
     };
 }
 if (typeof String.prototype.endsWith !== 'function') {
-    String.prototype.endsWith = function(str) {
+    String.prototype.endsWith = function (str) {
         return this.slice(this.length - str.length, this.length) === str;
     };
 }
 
-$.fn.extend ({
+$.fn.extend({
     toptext: function () {
         return this.clone().children().remove().end().text();
     }
 });
 
 // adds a :icontains selector to jQuery that is case insensitive
-$.expr[':'].icontains = $.expr.createPseudo(function(arg) {
-    return function(elem) {
+$.expr[':'].icontains = $.expr.createPseudo(function (arg) {
+    return function (elem) {
         return $(elem).toptext().toUpperCase().indexOf(arg.toUpperCase()) >= 0;
     };
 });
-
-

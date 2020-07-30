@@ -1,9 +1,9 @@
 module MDwiki.Core {
     class StringUtil {
-        static startsWith (search: string, suffix: string) {
+        static startsWith(search: string, suffix: string) {
             return search.slice(0, suffix.length) == suffix;
         }
-        static endsWith (search: string, prefix: string) : boolean {
+        static endsWith(search: string, prefix: string): boolean {
             return search.slice(search.length - prefix.length, search.length) == prefix;
         }
     }
@@ -13,7 +13,7 @@ module MDwiki.Core {
         public styles: string[];
         public scripts: string[];
 
-        constructor(name: string, styles: string[], scripts: string[] = []) {
+        constructor(name: string, styles: string[], scripts: string[] = []) {
             this.name = name;
             this.styles = styles;
             this.scripts = scripts;
@@ -23,15 +23,15 @@ module MDwiki.Core {
     }
 
     class BootswatchTheme extends Theme {
-        private baseUrl: string =  '//netdna.bootstrapcdn.com/bootswatch/3.0.2/'
+        private baseUrl: string = '//netdna.bootstrapcdn.com/bootswatch/3.0.2/'
         private baseFilename: string = '/bootstrap.min.css';
         private get url() {
             return this.baseUrl + this.name + this.baseFilename;
         }
 
-        constructor (name: string) {
+        constructor(name: string) {
             super(name, [], []);
-            this.styles = [ this.url ];
+            this.styles = [this.url];
         }
     }
 
@@ -40,15 +40,15 @@ module MDwiki.Core {
         private themes: Theme[] = [];
         public enableChooser: boolean = false;
 
-        public get themeNames (): string[] {
+        public get themeNames(): string[] {
             return this.themes.map(t => t.name);
         }
 
-        public get currentTheme (): string {
+        public get currentTheme(): string {
             var theme = window.localStorage.getItem("theme");
             return theme;
         }
-        public set currentTheme (val: string) {
+        public set currentTheme(val: string) {
             if (val == '')
                 window.localStorage.removeItem("theme");
             else
@@ -56,62 +56,62 @@ module MDwiki.Core {
         }
 
         // registers a theme into the catalog
-        public register (theme: Theme): void {
+        public register(theme: Theme): void {
             this.themes.push(theme);
         }
-        public loadDefaultTheme (): void {
+        public loadDefaultTheme(): void {
             this.load(this.currentTheme);
             // TODO load a default theme - right now this is baked in the index.tmpl
         }
 
-        public load (name: string): void {
+        public load(name: string): void {
             var target = this.themes.filter(t => t.name == name);
             if (target.length <= 0) return;
             else this.applyTheme(target[0]);
         }
 
-        private applyTheme (theme: Theme): void {
+        private applyTheme(theme: Theme): void {
 
             $('link[rel=stylesheet][href*="netdna.bootstrapcdn.com"]').remove();
             var link_tag = this.createLinkTag(theme.styles[0]);
             $('head').append(link_tag);
         }
 
-        private createLinkTag (url: string) {
+        private createLinkTag(url: string) {
             return $('<link rel="stylesheet" type="text/css">').attr('href', url);
         }
     }
-/*
-    export class ThemeChooserGimmick extends Gimmick {
-        constructor() {
-            super();
-            var tc = new ThemeChooser ();
-            registerDefaultThemes(tc);
+    /*
+        export class ThemeChooserGimmick extends Gimmick {
+            constructor() {
+                super();
+                var tc = new ThemeChooser ();
+                registerDefaultThemes(tc);
 
-            $.md.stage('bootstrap').subscribe(function(done) {
-                tc.loadDefaultTheme();
-                done();
-            });
+                $.md.stage('bootstrap').subscribe(function(done) {
+                    tc.loadDefaultTheme();
+                    done();
+                });
 
-            var build_chooser = ($links, opt, text) => {
-                tc.enableChooser = true;
-                themechooser($links, opt, text, tc);
-            };
-            var apply_theme = ($links, opt, text) => {
-                set_theme($links, opt, text, tc);
+                var build_chooser = ($links, opt, text) => {
+                    tc.enableChooser = true;
+                    themechooser($links, opt, text, tc);
+                };
+                var apply_theme = ($links, opt, text) => {
+                    set_theme($links, opt, text, tc);
+                }
+
+                this.addHandler('themechooser', build_chooser, 'skel_ready');
+                this.addHandler('theme', apply_theme);
+
             }
-
-            this.addHandler('themechooser', build_chooser, 'skel_ready');
-            this.addHandler('theme', apply_theme);
-
-        }
-    };
-*/
-    var set_theme = function($links, opt, text, tc: ThemeChooser) {
+        };
+    */
+    var set_theme = function ($links, opt, text, tc: ThemeChooser) {
         opt.name = opt.name || text;
         $links.each(function (i, link) {
-            $.md.stage('postgimmick').subscribe(function(done) {
-                if (!tc.currentTheme ||  tc.currentTheme == '' || tc.enableChooser == false)
+            $.md.stage('postgimmick').subscribe(function (done) {
+                if (!tc.currentTheme || tc.currentTheme == '' || tc.enableChooser == false)
                     tc.load(opt.name);
                 done();
             });
@@ -120,28 +120,28 @@ module MDwiki.Core {
     };
 
     function registerDefaultThemes(tc: ThemeChooser) {
-        var bootswatch_theme_names : string[] = [
+        var bootswatch_theme_names: string[] = [
             'amelia', 'cerulean', 'cosmo', 'cyborg', 'flatly', 'journal',
-            'readable','simplex','slate','spacelab','united', 'yeti'
+            'readable', 'simplex', 'slate', 'spacelab', 'united', 'yeti'
         ];
-        bootswatch_theme_names.map(name => tc.register(new BootswatchTheme (name)));
+        bootswatch_theme_names.map(name => tc.register(new BootswatchTheme(name)));
     }
 
     // creates the "Select Theme" navbar entry
-    var themechooser = function($links, opt, text, tc: ThemeChooser) {
-        return $links.each(function(i, e) {
+    var themechooser = function ($links, opt, text, tc: ThemeChooser) {
+        return $links.each(function (i, e) {
             var $this = $(e);
             var $chooser = $('<a href=""></a><ul></ul>'
             );
             $chooser.eq(0).text(text);
 
-            $.each(tc.themeNames, function(i: number, themeName: string) {
+            $.each(tc.themeNames, function (i: number, themeName: string) {
                 var $li = $('<li></li>');
                 $chooser.eq(1).append($li);
                 var $a = $('<a/>')
                     .text(themeName)
                     .attr('href', '')
-                    .click(function(ev) {
+                    .click(function (ev) {
                         ev.preventDefault();
                         tc.currentTheme = themeName;
                         window.location.reload();
@@ -152,7 +152,7 @@ module MDwiki.Core {
             $chooser.eq(1).append('<li class="divider" />');
             var $li = $('<li/>');
             var $a_use_default = $('<a>Use default</a>');
-            $a_use_default.click(function(ev) {
+            $a_use_default.click(function (ev) {
                 ev.preventDefault();
                 tc.currentTheme = '';
                 window.location.reload();
@@ -166,7 +166,3 @@ module MDwiki.Core {
         });
     };
 }
-
-
-
-

@@ -1,6 +1,5 @@
 
-module MDwiki.Util
-{
+module MDwiki.Util {
     export enum LogLevel {
         TRACE,
         DEBUG,

@@ -18,7 +18,7 @@ module MDwiki.Legacy {
         public bootstrapify() {
             this.parseHeader();
             this.createPageSkeleton();
-            this.buildMenu ();
+            this.buildMenu();
             this.changeHeading();
             this.replaceImageParagraphs();
 
@@ -51,13 +51,13 @@ module MDwiki.Legacy {
         private parseHeader() {
             if (!this.config.parseHeader)
                 return;
-            var parsedHeaders:any = {};
+            var parsedHeaders: any = {};
             var header = $('#md-content > pre:first-child');
             header.hide();
             var headerLines = header.text().split("\n");
-            $.each(headerLines, function(n, elem:any) {
+            $.each(headerLines, function (n, elem: any) {
                 elem = elem.split(':', 2);
-                if (elem.length === 2) {
+                if (elem.length === 2) {
                     parsedHeaders[elem[0].trim()] = elem[1].trim();
                 }
             });
@@ -91,7 +91,7 @@ module MDwiki.Legacy {
             $('#md-menu ul.nav').eq(0).append($menuContent);
 
             // the menu should be the first element in the body
-            $('#md-menu').prependTo ('#md-all');
+            $('#md-menu').prependTo('#md-all');
 
             var brand_text = $('#md-menu h1').toptext();
             $('#md-menu h1').remove();
@@ -106,17 +106,17 @@ module MDwiki.Legacy {
         }
         // the navbar has different height depending on theme, number of navbar entries,
         // and window/device width. Therefore recalculate on start and upon window resize
-        private set_offset_to_navbar () {
+        private set_offset_to_navbar() {
             var height = $('#md-main-navbar').height() + 10;
             $('#md-body').css('margin-top', height + 'px');
         }
-        private check_offset_to_navbar () {
+        private check_offset_to_navbar() {
             // HACK this is VERY UGLY. When an external theme is used, we don't know when the
             // css style will be finished loading - and we can only correctly calculate
             // the height AFTER it has completely loaded.
             var navbar_height = 0;
 
-            var dfd1 = util.repeatUntil(40, function() {
+            var dfd1 = util.repeatUntil(40, function () {
                 navbar_height = $('#md-main-navbar').height();
                 return (navbar_height > 35) && (navbar_height < 481);
             }, 25);
@@ -139,7 +139,7 @@ module MDwiki.Legacy {
             });
         }
 
-        private buildMenu () {
+        private buildMenu() {
             if ($('#md-menu a').length === 0) {
                 return;
             }
@@ -149,13 +149,13 @@ module MDwiki.Legacy {
             h.find('> a[href=""]')
                 .attr('data-toggle', 'dropdown')
                 .addClass('dropdown-toggle')
-                .attr('href','')
+                .attr('href', '')
                 .append('<b class="caret"/>');
             h.find('ul').addClass('dropdown-menu');
             h.find('ul li').addClass('dropdown');
 
             // replace hr with dividers
-            $('#md-menu hr').each(function(i,e) {
+            $('#md-menu hr').each(function (i, e) {
                 var hr = $(e);
                 var prev = hr.prev();
                 var next = hr.next();
@@ -172,7 +172,7 @@ module MDwiki.Legacy {
             });
 
             // remove empty uls
-            $('#md-menu ul').each(function(i,e) {
+            $('#md-menu ul').each(function (i, e) {
                 var ul = $(e);
                 if (ul.find('li').length === 0) {
                     ul.remove();
@@ -184,14 +184,14 @@ module MDwiki.Legacy {
 
             // wrap the toplevel links in <li>
             $('#md-menu > a').wrap('<li />');
-            $('#md-menu ul').each(function(i,e) {
+            $('#md-menu ul').each(function (i, e) {
                 var ul = $(e);
                 ul.appendTo(ul.prev());
                 ul.parent('li').addClass('dropdown');
             });
 
             // submenu headers
-            $('#md-menu li.dropdown').find('h1, h2, h3').each(function(i,e) {
+            $('#md-menu li.dropdown').find('h1, h2, h3').each(function (i, e) {
                 var $e = $(e);
                 var text = $e.toptext();
                 var header = $('<li class="dropdown-header" />');
@@ -213,7 +213,7 @@ module MDwiki.Legacy {
             return (elbottom <= bottom) && (eltop >= top);
         }
 
-        private createPageContentMenu () {
+        private createPageContentMenu() {
             // assemble the menu
             var $headings = $('#md-content').find(this.config.pageMenu.useHeadings);
 
@@ -223,8 +223,8 @@ module MDwiki.Legacy {
                 return;
             }
 
-            $('#md-content').removeClass ('col-md-12');
-            $('#md-content').addClass ('col-md-9');
+            $('#md-content').removeClass('col-md-12');
+            $('#md-content').addClass('col-md-9');
             $('#md-content-row').prepend('<div class="col-md-3" id="md-left-column"/>');
 
             var recalc_width = function () {
@@ -238,7 +238,7 @@ module MDwiki.Legacy {
             $(window).scroll(() => {
                 recalc_width();
                 var $first;
-                $('*.md-inpage-anchor').each((i,e) => {
+                $('*.md-inpage-anchor').each((i, e) => {
                     if ($first === undefined) {
                         var h = $(e);
                         if (this.isVisibleInViewport(h)) {
@@ -247,7 +247,7 @@ module MDwiki.Legacy {
                     }
                 });
                 // highlight in the right menu
-                $('#md-page-menu a').each(function(i,e) {
+                $('#md-page-menu a').each(function (i, e) {
                     var $a = $(e);
                     if ($first && $a.toptext() === $first.toptext()) {
                         $('#md-page-menu a.active').removeClass('active');
@@ -278,7 +278,7 @@ module MDwiki.Legacy {
                 var $a = $('<a class="list-group-item" />');
                 $a.addClass(className);
                 $a.attr('href', util.getInpageAnchorHref($heading.toptext()));
-                $a.click(function(ev) {
+                $a.click(function (ev) {
                     ev.preventDefault();
 
                     var $this = $(this);
@@ -289,9 +289,9 @@ module MDwiki.Legacy {
                 return $a;
             }
 
-            $($headings).each(function(i,e) {
+            $($headings).each(function (i, e) {
                 var hClass = $(e).prop('tagName');
-                var currLevel = parseInt(hClass.substr(1,1), 10);
+                var currLevel = parseInt(hClass.substr(1, 1), 10);
                 var $hli = createMenuItem(e, hClass.toLowerCase() + '-nav');
 
                 $ul.append($hli);
@@ -331,9 +331,9 @@ module MDwiki.Legacy {
             $('#md-title').wrapInner(jumbo);
         }
 
-        private highlightActiveLink () {
+        private highlightActiveLink() {
             // when no menu is used, return
-            if ($('#md-menu').find ('li').length === 0) {
+            if ($('#md-menu').find('li').length === 0) {
                 return;
             }
             var filename = window.location.hash;
@@ -342,7 +342,7 @@ module MDwiki.Legacy {
                 filename = '#!index.md';
             }
             var selector = 'li:has(a[href="' + filename + '"])';
-            $('#md-menu').find (selector).addClass ('active');
+            $('#md-menu').find(selector).addClass('active');
         }
 
         // replace all <p> around images with a <div class="thumbnail" >
@@ -350,15 +350,15 @@ module MDwiki.Legacy {
 
             // only select those paragraphs that have images in them
             var $pars = $('p img').parents('p');
-            $pars.each(function() {
+            $pars.each(function () {
                 var $p = $(this);
                 var $images = $(this).find('img')
-                    .filter(function() {
+                    .filter(function () {
                         // only select those images that have no parent anchor
                         return $(this).parents('a').length === 0;
                     })
                     // add those anchors including images
-                    .add($(this).find ('img'))
+                    .add($(this).find('img'))
                     .addClass('img-responsive')
                     .addClass('img-thumbnail');
 
@@ -371,7 +371,7 @@ module MDwiki.Legacy {
                 // the number of images in a paragraphs determines thei width / span
 
                 // if the image is a link, wrap around the link to avoid
-                function wrapImage ($imgages, wrapElement) {
+                function wrapImage($imgages, wrapElement) {
                     return $images.each(function (i, img) {
                         var $img = $(img);
                         var $parent_img = $img.parent('a');
@@ -382,7 +382,7 @@ module MDwiki.Legacy {
                     });
                 }
 
-                if ($p.hasClass ('md-floatenv')) {
+                if ($p.hasClass('md-floatenv')) {
                     if ($images.length === 1) {
                         wrapImage($images, '<div class="col-sm-8" />');
                     } else if ($images.length === 2) {
@@ -425,13 +425,13 @@ module MDwiki.Legacy {
             // example: youtube iframes, google maps div canvas
             // all external content are in the md-external class
 
-            $('iframe.md-external').not ('.md-external-nowidth')
+            $('iframe.md-external').not('.md-external-nowidth')
                 .attr('width', '450')
-                .css ('width', '450px');
+                .css('width', '450px');
 
-            $('iframe.md-external').not ('.md-external-noheight')
+            $('iframe.md-external').not('.md-external-noheight')
                 .attr('height', '280')
-                .css ('height', '280px');
+                .css('height', '280px');
 
             // make it appear like an image thumbnal
             //$('.md-external').addClass('img-thumbnail');
@@ -455,7 +455,7 @@ module MDwiki.Legacy {
             var $rendered = footer_template.insertAfter($('#md-all'));
         }
 
-        private addAdditionalFooterText () {
+        private addAdditionalFooterText() {
             var text = this.config.additionalFooterText;
             if (text) {
                 $('.md-copyright-footer #md-footer-additional').html(text);

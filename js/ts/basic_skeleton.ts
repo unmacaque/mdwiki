@@ -50,7 +50,7 @@ module MDwiki.Legacy {
             // paragraph into a <div>
             var self = this;
             // this also moves ANY child tags to the front of the paragraph!
-            this.domElement.find('p').each(function() {
+            this.domElement.find('p').each(function () {
                 var $p = $(this);
                 // nothing to do for paragraphs without text (still needed?)
                 if ($.trim($p.text()).length === 0) {
@@ -209,7 +209,7 @@ module MDwiki.Legacy {
                     var autoAnchors = config.pageMenu.useHeadings.split(',');
                     var supported = false;
 
-                    $(autoAnchors).each(function (i, e:any) {
+                    $(autoAnchors).each(function (i, e: any) {
                         if (heading.toLowerCase() === e.toLowerCase()) {
                             supported = true;
                         }

@@ -20,7 +20,7 @@ module MDwiki.Templating {
             }
         }
 
-        render () {
+        render() {
             this.renderedTemplate = this.templateFunction(this.model);
             return this.renderedTemplate;
         }
@@ -35,23 +35,23 @@ module MDwiki.Templating {
          * @param node - The node that will be replaced
          * @returns {JQuery} The newly inserted node
          */
-        replace (node: any) : JQuery {
+        replace(node: any): JQuery {
             this.assertTemplateIsReady();
             var rendered_template = $(this.renderedTemplate);
             $(node).replaceWith(rendered_template);
             return rendered_template;
         }
 
-        appendTo (node: any) {
+        appendTo(node: any) {
             this.assertTemplateIsReady();
             return $(this.renderedTemplate).appendTo($(node));
         }
 
-        insertAfter (node: any) {
+        insertAfter(node: any) {
             this.assertTemplateIsReady();
             return $(this.renderedTemplate).insertAfter(node);
         }
-        insertBefore (node: any) {
+        insertBefore(node: any) {
             this.assertTemplateIsReady();
             return $(this.renderedTemplate).insertBefore(node);
         }

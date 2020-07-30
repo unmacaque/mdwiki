@@ -1,11 +1,11 @@
-(function($) {
+(function ($) {
     //'use strict';
     function twitterfollow($links, opt, text) {
-        return $links.each(function(i, link) {
+        return $links.each(function (i, link) {
             var $link = $(link);
             var user;
             var href = $link.attr('href');
-            if (href.indexOf ('twitter.com') <= 0) {
+            if (href.indexOf('twitter.com') <= 0) {
                 user = $link.attr('href');
                 href = $.md.prepareLink('twitter.com/' + user);
             }
@@ -16,8 +16,8 @@
             if (user[0] === '@') {
                 user = user.substring(1);
             }
-            var twitter_src = $('<a href="' + href + '" class="twitter-follow-button" data-show-count="false" data-lang="en" data-show-screen-name="false">'+ '@' + user + '</a>');
-            $link.replaceWith (twitter_src);
+            var twitter_src = $('<a href="' + href + '" class="twitter-follow-button" data-show-count="false" data-lang="en" data-show-screen-name="false">' + '@' + user + '</a>');
+            $link.replaceWith(twitter_src);
         });
     }
 
@@ -27,12 +27,12 @@
 
     var twitterGimmick = new MDwiki.Core.Gimmick();
     twitterGimmick.addHandler('twitterfollow', twitterfollow);
-    twitterGimmick.init = function() {
+    twitterGimmick.init = function () {
         var script = new MDwiki.Core.ScriptResource();
         script.url = twitterscript;
         script.loadstage = 'postgimmick';
         script.finishstage = 'all_ready';
-                // license: 'EXCEPTION',
+        // license: 'EXCEPTION',
         twitterGimmick.registerScriptResource(script);
     };
     $.md.wiki.gimmicks.registerGimmick(twitterGimmick);
