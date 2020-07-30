@@ -227,16 +227,7 @@ module MDwiki.Legacy {
             $('#md-content').addClass('col-md-9');
             $('#md-content-row').prepend('<div class="col-md-3" id="md-left-column"/>');
 
-            var recalc_width = function () {
-                // if the page menu is affixed, it is not a child of the
-                // <md-left-column> anymore and therefore does not inherit
-                // its width. On every resize, change the class accordingly
-                var width_left_column = $('#md-left-column').css('width');
-                $('#md-page-menu').css('width', width_left_column);
-            };
-
             $(window).scroll(() => {
-                recalc_width();
                 var $first;
                 $('*.md-inpage-anchor').each((i, e) => {
                     if ($first === undefined) {
@@ -267,6 +258,7 @@ module MDwiki.Legacy {
                 offset: 130
             });
             affixDiv.css('top', top_spacing);
+            affixDiv.css('width', '260px');
             //affix.css('top','-250px');
 
             var $pannel = $('<div class="panel panel-default"><ul class="list-group"/></div>');
@@ -298,7 +290,6 @@ module MDwiki.Legacy {
             });
 
             $(window).resize(() => {
-                recalc_width();
                 this.check_offset_to_navbar();
             });
             $('#md-left-column').append(affixDiv);
