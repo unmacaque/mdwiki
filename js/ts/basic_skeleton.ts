@@ -229,7 +229,7 @@ module MDwiki.Legacy {
                 $jumpLink.click((ev) => {
                     ev.preventDefault();
 
-                    this.domElement.find('body').scrollTop(this.domElement.find('#md-page-menu').position().top);
+                    window.scrollTo(0, 0);
                 });
 
                 if ($heading.parents('#md-menu').length === 0) {
