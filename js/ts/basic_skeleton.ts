@@ -198,7 +198,7 @@ module MDwiki.Legacy {
                     mouse_entered = false;
                     $pilcrow.fadeOut(200);
                 });
-                $pilcrow.appendTo($heading);
+                $(document).ready(() => $pilcrow.appendTo($heading));
             }
 
             // adds a link to the navigation at the top of the page
@@ -239,11 +239,11 @@ module MDwiki.Legacy {
 
             // adds a page inline anchor to each h1,h2,h3,h4,h5,h6 element
             // which can be accessed by the headings text
-            this.domElement.find('h1,h2,h3,h4,h5,h6').not('#md-title h1').each(function () {
+            this.domElement.find('#md-content').find('h1,h2,h3,h4,h5,h6').each(function () {
                 var $heading = $(this);
                 $heading.addClass('md-inpage-anchor');
-                var text = $heading.clone().children('.anchor-highlight').remove().end().text();
-                var href = MDwiki.Utils.Util.getInpageAnchorHref(text);
+                var id = $heading.attr('id')
+                var href = MDwiki.Utils.Util.getInpageAnchorHref(id);
                 addPilcrow($heading, href);
 
                 //add jumplink to table of contents
