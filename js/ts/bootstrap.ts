@@ -272,7 +272,7 @@ module MDwiki.Legacy {
                 $a.attr('href', util.getInpageAnchorHref($heading.attr('id')));
                 $a.click(function (ev) {
                     ev.preventDefault();
-                    var elemPos = Math.floor($heading.get(0).getBoundingClientRect().top);
+                    var elemPos = $heading.offset().top
                     var menuHeight = $('#md-main-navbar').get(0).offsetHeight;
                     window.scrollTo({ top: elemPos - menuHeight })
                 });
