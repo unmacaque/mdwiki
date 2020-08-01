@@ -269,13 +269,12 @@ module MDwiki.Legacy {
                 var $heading = $(heading);
                 var $a = $('<a class="list-group-item" />');
                 $a.addClass(className);
-                $a.attr('href', util.getInpageAnchorHref($heading.toptext()));
+                $a.attr('href', util.getInpageAnchorHref($heading.attr('id')));
                 $a.click(function (ev) {
                     ev.preventDefault();
-
-                    var $this = $(this);
-                    var anchortext = util.getInpageAnchorText($this.toptext());
-                    //$.md.scrollToInPageAnchor(anchortext);
+                    var elemPos = Math.floor($heading.get(0).getBoundingClientRect().top);
+                    var menuHeight = $('#md-main-navbar').get(0).offsetHeight;
+                    window.scrollTo({ top: elemPos - menuHeight })
                 });
                 $a.text($heading.toptext());
                 return $a;
