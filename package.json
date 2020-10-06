@@ -15,6 +15,7 @@
     "prismjs": "^1.20.0"
   },
   "devDependencies": {
+    "@types/jquery": "^3.5.2",
     "grunt": "^1.2.1",
     "grunt-cli": "^1.3.2",
     "grunt-contrib-concat": "^1.0.1",
@@ -27,12 +28,10 @@
     "grunt-ts": "^5.5.1",
     "handlebars": "^4.7.6",
     "load-grunt-tasks": "*",
-    "typescript": "^3.9.7",
-    "typings": "^2.1.1"
+    "typescript": "^3.9.7"
   },
   "scripts": {
     "build": "grunt release",
-    "postinstall": "typings install",
     "start": "grunt devel"
   }
 }

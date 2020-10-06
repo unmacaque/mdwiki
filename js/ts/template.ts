@@ -1,4 +1,5 @@
 ///<reference path="utils.ts" />
+///<reference path="../../node_modules/handlebars/types/index.d.ts" />
 
 module MDwiki.Templating {
     export class Template {

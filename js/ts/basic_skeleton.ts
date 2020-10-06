@@ -10,7 +10,7 @@ module MDwiki.Legacy {
 
     export class PageSkeleton {
         config: any;
-        domElement: JQuery;
+        domElement: JQuery<Node>;
 
         constructor(config: any, domElement: Node) {
             this.domElement = $(domElement);
@@ -62,10 +62,10 @@ module MDwiki.Legacy {
                 var image_children = $p.contents().filter(function () {
                     var $child = $(this);
                     // we extract images and hyperlinks with images out of the paragraph
-                    if (this.tagName === 'A' && $child.find('img').length > 0) {
+                    if (this.nodeName === 'A' && $child.find('img').length > 0) {
                         return true;
                     }
-                    if (this.tagName === 'IMG') {
+                    if (this.nodeName === 'IMG') {
                         return true;
                     }
                     // else
