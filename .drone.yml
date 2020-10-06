@@ -9,3 +9,17 @@ steps:
     commands:
       - npm ci
       - npm run build
+  - name: docker
+    image: plugins/docker
+    volumes:
+      - name: docker-sock
+        path: /var/run/docker.sock
+    settings:
+      repo: unmacaque/mdwiki
+      tags: latest
+      dry_run: true
+
+volumes:
+  - name: docker-sock
+    host:
+      path: /var/run/docker.sock
