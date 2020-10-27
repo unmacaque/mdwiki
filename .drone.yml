@@ -4,8 +4,10 @@ name: build
 
 steps:
   - name: npm
-    image: unmacaque/ci-run
-    pull: never
+    image: node:lts-alpine
+    environment:
+      NPM_CONFIG_REGISTRY:
+        from_secret: npm_registry
     commands:
       - npm ci
       - npm run build
