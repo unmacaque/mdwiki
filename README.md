@@ -22,4 +22,6 @@ Run `npm install` once to install all required dependencies.
 
 Run `npm start` to start a development web server on port 8080. Changes to the source are watched and trigger a rebuild.
 
-Run `npm run build` to produce a minified version of mdwiki in the `dist/` directory.
+Run `npm run build` to produce a minified version of mdwiki in the `dist` directory.
+
+Run `npm run serve` to start a static file server for files in the `dist` directory.

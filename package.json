@@ -28,10 +28,12 @@
     "grunt-ts": "^5.5.1",
     "handlebars": "^4.7.6",
     "load-grunt-tasks": "*",
+    "serve": "^11.3.2",
     "typescript": "^3.9.7"
   },
   "scripts": {
     "build": "grunt release",
-    "start": "grunt devel"
+    "start": "grunt devel",
+    "serve": "serve dist"
   }
 }
