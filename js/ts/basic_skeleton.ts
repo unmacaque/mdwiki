@@ -198,7 +198,7 @@ module MDwiki.Legacy {
                     mouse_entered = false;
                     $pilcrow.fadeOut(200);
                 });
-                $(document).ready(() => $pilcrow.appendTo($heading));
+                $(() => $pilcrow.appendTo($heading));
             }
 
             // adds a link to the navigation at the top of the page
@@ -226,7 +226,7 @@ module MDwiki.Legacy {
                     return;
 
                 var $jumpLink = $('<a class="visible-xs visible-sm jumplink" href="#md-page-menu">' + c + '</a>');
-                $jumpLink.click((ev) => {
+                $jumpLink.on('click', (ev) => {
                     ev.preventDefault();
 
                     window.scrollTo(0, 0);

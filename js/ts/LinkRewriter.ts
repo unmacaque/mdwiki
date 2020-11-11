@@ -36,7 +36,7 @@ module MDwiki.Links {
 
                 if (!isImage && href.startsWith('#') && !href.startsWith('#!')) {
                     // in-page link
-                    link.click(function (ev) {
+                    link.on('click', function (ev) {
                         ev.preventDefault();
                         console.log("inpage anchors not yet implemented");
                     });

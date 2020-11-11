@@ -42,7 +42,7 @@ module MDwiki.Legacy {
             });
         }
         private bind(ev, func) {
-            $(document).bind(ev, func);
+            $(document).on(ev, func);
             this.events.push(ev);
         }
         private trigger(ev) {
@@ -227,7 +227,7 @@ module MDwiki.Legacy {
             $('#md-content').addClass('col-md-9');
             $('#md-content-row').prepend('<div class="col-md-3" id="md-left-column"/>');
 
-            $(window).scroll(() => {
+            $(window).on('scroll', () => {
                 var $first;
                 $('*.md-inpage-anchor').each((i, e) => {
                     if ($first === undefined) {
@@ -237,6 +237,7 @@ module MDwiki.Legacy {
                         }
                     }
                 });
+                console.log($first);
                 // highlight in the right menu
                 $('#md-page-menu a').each(function (i, e) {
                     var $a = $(e);
@@ -270,7 +271,7 @@ module MDwiki.Legacy {
                 var $a = $('<a class="list-group-item" />');
                 $a.addClass(className);
                 $a.attr('href', util.getInpageAnchorHref($heading.attr('id')));
-                $a.click(function (ev) {
+                $a.on('click', function (ev) {
                     ev.preventDefault();
                     var elemPos = $heading.offset().top
                     var menuHeight = $('#md-main-navbar').get(0).offsetHeight;
@@ -288,7 +289,7 @@ module MDwiki.Legacy {
                 $ul.append($hli);
             });
 
-            $(window).resize(() => {
+            $(window).on('resize', () => {
                 this.check_offset_to_navbar();
             });
             $('#md-left-column').append(affixDiv);

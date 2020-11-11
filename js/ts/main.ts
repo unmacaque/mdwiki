@@ -28,7 +28,7 @@ declare var MDwikiEnableDebug: any;
             return;
         }
 
-        $(document).ready(function () {
+        $(function () {
 
             function extractHashData() {
                 // first char is the # or #!
@@ -81,8 +81,8 @@ declare var MDwikiEnableDebug: any;
 
             appendDefaultFilenameToHash();
 
-            $(window).bind('hashchange', function () {
-                window.location.reload(false);
+            $(window).on('hashchange', function () {
+                window.location.reload();
             });
 
             $.md.wiki.run();

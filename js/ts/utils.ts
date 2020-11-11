@@ -141,7 +141,7 @@ $.fn.extend({
 });
 
 // adds a :icontains selector to jQuery that is case insensitive
-$.expr[':'].icontains = $.expr.createPseudo(function (arg) {
+$.expr.pseudos['icontains'] = $.expr.createPseudo(function (arg) {
     return function (elem) {
         return $(elem).toptext().toUpperCase().indexOf(arg.toUpperCase()) >= 0;
     };

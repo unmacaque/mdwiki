@@ -141,7 +141,7 @@ module MDwiki.Core {
                 var $a = $('<a/>')
                     .text(themeName)
                     .attr('href', '')
-                    .click(function (ev) {
+                    .on('click', function (ev) {
                         ev.preventDefault();
                         tc.currentTheme = themeName;
                         window.location.reload();
@@ -152,7 +152,7 @@ module MDwiki.Core {
             $chooser.eq(1).append('<li class="divider" />');
             var $li = $('<li/>');
             var $a_use_default = $('<a>Use default</a>');
-            $a_use_default.click(function (ev) {
+            $a_use_default.on('click', function (ev) {
                 ev.preventDefault();
                 tc.currentTheme = '';
                 window.location.reload();
