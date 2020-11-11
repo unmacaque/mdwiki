@@ -38,7 +38,10 @@ module MDwiki.Links {
                     // in-page link
                     link.on('click', function (ev) {
                         ev.preventDefault();
-                        console.log("inpage anchors not yet implemented");
+                        var linkId = $(link).attr('href').split(/#/).pop();
+                        var elemPos = $('#' + linkId).offset().top
+                        var menuHeight = $('#md-main-navbar').get(0).offsetHeight;
+                        window.scrollTo({ top: elemPos - menuHeight });
                     });
                 }
 
