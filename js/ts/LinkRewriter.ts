@@ -17,7 +17,7 @@ module MDwiki.Links {
             }
             // HACK against marked: empty links will have empy href attribute
             // we remove the href attribute from the a tag
-            html.find('a').not('#md-menu a').filter('[href]').removeAttr('href');
+            html.find('a').not('#md-menu a').filter('[href=""]').removeAttr('href');
 
             html.find('a, img').each(function (i, e) {
                 var link = $(e);
