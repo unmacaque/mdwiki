@@ -237,7 +237,7 @@ module MDwiki.Legacy {
                         }
                     }
                 });
-                console.log($first);
+
                 // highlight in the right menu
                 $('#md-page-menu a').each(function (i, e) {
                     var $a = $(e);
